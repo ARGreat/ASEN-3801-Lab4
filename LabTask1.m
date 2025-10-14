@@ -21,6 +21,10 @@ I = [I_x;I_y;I_z];
 nu = 1*10^(-3); %N/(m/s)^2
 mu = 2*10^(-6); %N*m/(rad/s)^2
 
+phi = atan((nu * 5^2) / (m * g))
+Zc = (m * g) / cos(phi)
+
+
 %% 1.2 Run QuadrotorEOM for Aircraft in Steady Hover without Aero Forces
 
 var_0 = [0;0;-2;0;0;0;0;0;0;0;0;0]; %State Vector for Quadrotor in Steady Hover;
@@ -29,7 +33,7 @@ motor_forces = m*g*[0.25;0.25;0.25;0.25];
 
 %Set 
 
-PlotAircraftSim(time,aircraft_state_array,);
+PlotAircraftSim(time,aircraft_state_array);
 
 %% 1.3 Run Quadrotor EOM with Aero Forces
 
