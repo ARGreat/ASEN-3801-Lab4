@@ -10,7 +10,6 @@ clear; clc; close all;
 LabTask1;
 LabTask2;
 
-
 %Save Figures
 
 
