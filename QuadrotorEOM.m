@@ -10,7 +10,18 @@
 %Outputs: 
 
 function var_dot = QuadrotorEOM(t, var, g, m, I, d, km, nu, mu, motor_forces)
+% trim thrust for the rotors in steady hovering flight
+% F = m*g; in main?? 
+% f = F/4; in main?
+Z_c = -f1 - f2 - f3 - f4;
+L_c = (d/sqrt(2)) * (-f1 - f2 + f3 + f4);
+M_c = (d/sqrt(2)) * (f1 - f2 - f3 + f4);
+N_c = km * (f1 - f2 + f3 - f4);
 
-
+% simulate this trim state for 10 secs and verify that it produces equilibrium motion
+% use ode45
+tspan = [0 10];
+initial_conditions = var;
+[t_out, var_out] = ode45(@t,var) QuadrotorEOM(t, var, g, m, I, d, km, nu, mu, motor_forces), tspan, initial_conditions);
 
 end
