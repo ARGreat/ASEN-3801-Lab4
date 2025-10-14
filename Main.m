@@ -5,6 +5,7 @@
 %Outputs:
 clear; clc; close all;
 
-%Load in Control File
-load('RSdata_nocontrol.mat');
+%Call Lab Task 1
+LabTask1;
+
 

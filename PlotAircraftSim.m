@@ -81,7 +81,5 @@ subplot(2,2,4); hold on;
 %3-d Path
 title("3D Path");
 figure(fig(6)); hold on;
-
-
 end
 
