@@ -7,5 +7,6 @@ clear; clc; close all;
 
 %Call Lab Task 1
 LabTask1;
+LabTask2;
 
 
