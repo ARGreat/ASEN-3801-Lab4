@@ -5,8 +5,11 @@
 %Outputs:
 clear; clc; close all;
 
-%Call Lab Task 1
+%Run lab Tasks
+
 LabTask1;
 LabTask2;
+
+%Save Figures
 
 

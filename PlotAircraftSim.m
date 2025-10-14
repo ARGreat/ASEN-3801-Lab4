@@ -22,64 +22,89 @@ function PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, co
 
 
 %% Plot Data
+% [x, y, z, φ, θ, ψ, u, v, w, p, q, r] [𝑍𝑍𝑐𝑐, 𝐿𝐿 𝑐𝑐, 𝑀𝑀𝑐𝑐, 𝑁𝑁𝑐𝑐]𝑇𝑇
 
 % Intertial Position
 figure(fig(1));
-title("Inertial Positon (TBA) vs Time (s)")
-subplot(3,1,1);hold on;
+sgtitle("Inertial Positon (m) vs Time (s)")
 
-subplot(3,1,2);hold on;
+subplot(3,1,1);
+plot(time, aircraft_state_array(1,:), col); hold on; ylabel('x (m)');
 
-subplot(3,1,3);hold on;
+subplot(3,1,2);
+plot(time, aircraft_state_array(2,:), col); hold on; ylabel('y (m)')
+
+subplot(3,1,3);
+plot(time, aircraft_state_array(3,:), col); hold on; ylabel('z (m)'); xlabel('Time (s)');
 
 
 %Euler Angles
 figure(fig(2));
-title("Euler Aangles (deg) vs Time (s)")
-subplot(3,1,1);hold on;
+sgtitle("Euler Angles (rad) vs Time (s)")
 
-subplot(3,1,2);hold on;
+subplot(3,1,1);
+plot(time, aircraft_state_array(4,:), col); hold on; ylabel('φ (rad)')
 
-subplot(3,1,3);hold on;
+subplot(3,1,2);
+plot(time, aircraft_state_array(5,:), col); hold on; ylabel('θ (rad)')
 
+subplot(3,1,3);
+plot(time, aircraft_state_array(6,:), col); hold on; ylabel('ψ (rad)'); xlabel('Time (s)');
 
 
 %Inertial Velocity
 figure(fig(3));
-title("Inertial Velocity (TBA) vs Time (s)")
-subplot(3,1,1);hold on;
+sgtitle("Inertial Velocity (m/s) vs Time (s)")
 
-subplot(3,1,2);hold on;
+subplot(3,1,1);
+plot(time, aircraft_state_array(7,:), col); hold on; ylabel('u (m/s)')
 
-subplot(3,1,3);hold on;
+subplot(3,1,2);
+plot(time, aircraft_state_array(8,:), col); hold on; ylabel('v (m/s)')
 
+subplot(3,1,3);
+plot(time, aircraft_state_array(9,:), col); hold on; ylabel('w (m/s)'); xlabel('Time (s)');
 
 
 %Angular Velocity
 figure(fig(4));
-title("Angular Velocity (deg/s) vs Time (s)");
-subplot(3,1,1);hold on;
+sgtitle("Angular Velocity (rad/s) vs Time (s)");
 
-subplot(3,1,2);hold on;
+subplot(3,1,1);
+plot(time, aircraft_state_array(10,:), col); hold on; ylabel('p (rad/s)')
 
-subplot(3,1,3);hold on;
+subplot(3,1,2);
+plot(time, aircraft_state_array(11,:), col); hold on; ylabel('q (rad/s)')
+
+subplot(3,1,3);
+plot(time, aircraft_state_array(12,:), col); hold on; ylabel('r (rad/s)'); xlabel('Time (s)');
 
 
 
 %Control Variables
-title("Control Variables (N) vs Time (s)");
 figure(fig(5));
+sgtitle("Control Variables (N) vs Time (s)");
 
-subplot(2,2,1); hold on;
+subplot(4,1,1);
+plot(time, control_input_array(1,:), col); hold on; ylabel('Z_c (N)')
 
-subplot(2,2,2); hold on;
+subplot(4,1,2); 
+plot(time, control_input_array(2,:), col); hold on; ylabel('L_c (N)')
 
-subplot(2,2,3); hold on;
+subplot(4,1,3); 
+plot(time, control_input_array(3,:), col); hold on; ylabel('M_c (N)')
 
-subplot(2,2,4); hold on;
+subplot(4,1,4);
+plot(time, control_input_array(4,:), col); hold on; ylabel('N_c (N)'); xlabel('Time (s)');
 
 %3-d Path
-title("3D Path");
 figure(fig(6)); hold on;
+title("3D Path");
+
+plot3(aircraft_state_array(1,:),aircraft_state_array(2,:),aircraft_state_array(3,:), col, 'LineWidth', 1.2); hold on;
+plot3(aircraft_state_array(1,1),aircraft_state_array(2,1),aircraft_state_array(3,1),'go', 'MarkerFaceColor', 'g'); hold on;
+plot3(aircraft_state_array(1,end),aircraft_state_array(2,end),aircraft_state_array(3,end),'ro', 'MarkerFaceColor', 'r'); hold on;
+
+
 end
 
