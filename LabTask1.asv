@@ -52,11 +52,11 @@ PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col);
 
 %% 1.4 Run Quadrotor EOM while traveling 5m/s East;
     %Calculating Trim Cons for 1.4
-    phi = atan((nu * 5^2) / (m * g));
+    phi = -atan((nu * 5^2) / (m * g));
     fc = (m * g) / cos(phi) / 4;
     
     %Not yawed
-        var_0 = [0;0;-2;phi;0;0;0;5*cos(phi);-sin(phi)*5;0;0;0]; %State Vector for Quadrotor in Steady Hover;
+        var_0 = [0;0;-2;0;phi;0;5;0;0;0;0;0]; %State Vector for Quadrotor in Steady Hover;
         motor_forces = [fc;fc;fc;fc];
         [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOM(t, aircraft_state_array, g, m, I, d, km, nu, mu, motor_forces), [0,10],var_0);
     

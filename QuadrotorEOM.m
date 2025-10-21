@@ -43,7 +43,6 @@ function var_dot = QuadrotorEOM(t, var, g, m, I, d, km, nu, mu, motor_forces)
     Y=-nu*V_a*v_E;
     Z=-nu*V_a*w_E;
 
-     
     L = -mu*sqrt(p^2+q^2+r^2)*p;
     M = -mu*sqrt(p^2+q^2+r^2)*q;
     N = -mu*sqrt(p^2+q^2+r^2)*r;
