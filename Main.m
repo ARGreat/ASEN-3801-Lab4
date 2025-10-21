@@ -7,7 +7,7 @@ clear; clc; close all;
 
 %Run lab Tasks
 
-LabTask1;
+%LabTask1;
 LabTask2;
 
 %Save Figures
