@@ -1,0 +1,23 @@
+clear; clc; close all;
+
+function [Fc, Gc] = RotationDerivativeFeedback(var, m, g)
+    Fc = [0, 0, -m * g]; % N
+
+    p = var(10); % rad/s
+    q = var(11); % rad/s
+    r = var(12); % rad/s
+
+    mu = 2e-6; % N*m/(rad/s)^2
+
+    
+
+
+end
+
+% function vec = test(a, b, c)
+%     vec(1) = a;
+%     vec(2) = b;
+%     vec(3) = c;
+% end
+% 
+% vec = test(1,3,5)
