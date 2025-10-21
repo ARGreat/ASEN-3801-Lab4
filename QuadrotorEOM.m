@@ -49,20 +49,20 @@ function var_dot = QuadrotorEOM(t, var, g, m, I, d, km, nu, mu, motor_forces)
     
     %Rotation Matrix for our Position Derivatives
     R_x =[1 0 0;
-         0 cosd(phi) sind(phi);
-         0 -sind(phi) cosd(phi)];
-    R_y =[1 0 0;
-         0 cosd(theta) sind(theta);
-         0 -sind(theta) cosd(theta)];
-    R_z =[1 0 0;
-         0 cosd(psi) sind(psi);
-         0 -sind(psi) cosd(psi)];
+         0 cos(phi) sin(phi);
+         0 -sin(phi) cos(phi)];
+    R_y =[cos(theta) 0 -sin(theta);
+          0 1 0;
+          sin(theta) 0 cos(theta)];
+    R_z =[cos(psi) sin(psi) 0;
+          -sin(psi) cos(psi) 0;
+          0 0 1];
     EB = R_x*R_y*R_z;
 
     %Alex Begins Working
     %rotation matrix from intertial to body;
     
-    Pos_dot = EB*[u_E;v_E;w_E];
+    Pos_dot = EB'*[u_E;v_E;w_E];
     x_E_dot = Pos_dot(1);
     y_E_dot = Pos_dot(2);
     z_E_dot = Pos_dot(3);
