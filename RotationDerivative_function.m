@@ -10,7 +10,7 @@ function [Fc, Gc] = RotationDerivativeFeedback(var, m, g)
     mu = 2e-6; % N*m/(rad/s)^2
 
     vec = [p,q,r];
-    Gc = -mu * norm(vec) * vec;
+    Gc = -mu * norm(vec) * vec; % N*m/(rad/s)^2
 
 
 end
