@@ -34,7 +34,7 @@ n = length(time);
 control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
 fig = [11;12;13;-1;-1;-1];
 col = ["";"";"";"";"";""];
-PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col);
+PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,"1.2");
 
 %% 1.3 Run Quadrotor EOM with Aero Forces
 
@@ -48,7 +48,7 @@ PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col);
     control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
     fig = [21;22;23;-1;-1;-1];
     col = ["";"";"";"";"";""];
-    PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col)
+    PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,"1.3")
 
 %% 1.4 Run Quadrotor EOM while traveling 5m/s East;
     %Calculating Trim Cons for 1.4
@@ -65,7 +65,7 @@ PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col);
         control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
         fig = [31;32;33;-1;-1;-1];
         col = ["";"";"";"";"";""];
-        PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col)
+        PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,"1.4 (No Yaw)")
 
     %yawed      [x,y, z,φ,  θ,   ψ,         u,v,          w,p,q,r]
         var_0 = [0;0;-2;0;-phi;pi/2;5*cos(phi);0;-5*sin(phi);0;0;0]; %State Vector for Quadrotor in Steady Hover;
@@ -77,5 +77,5 @@ PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col);
         control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
         fig = [41;42;43;-1;-1;-1];
         col = ["";"";"";"";"";""];
-        PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col)
+        PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,"1.4 (Yaw)")
 end

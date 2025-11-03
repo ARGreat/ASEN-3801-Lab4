@@ -14,7 +14,7 @@
 %    figure. This figure should indicate the start (green) and finish (red) of the path with different colored
 %    markers.
 
-function PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col)
+function PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,nameSuffix)
 
 %% Simulate Flight
 
@@ -27,6 +27,7 @@ function PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, co
 % Intertial Position
 if(fig(1) >=1)
     figure(fig(1));hold on;
+    set(gcf,'Name',nameSuffix+" Inertial P",'NumberTitle','off');
     sgtitle("Inertial Positon (m) vs Time (s)")
     
     subplot(3,1,1);hold on;
@@ -42,6 +43,7 @@ end
 %Euler Angles
 if(fig(2) >=1)
     figure(fig(2)); hold on;
+    set(gcf,'Name',nameSuffix+" Euler Angles",'NumberTitle','off');
     sgtitle("Euler Angles (rad) vs Time (s)")
     
     subplot(3,1,1);
@@ -57,6 +59,7 @@ end
 %Inertial Velocity
 if(fig(3) >=1)
     figure(fig(3));
+    set(gcf,'Name',nameSuffix+" Inertial V",'NumberTitle','off');
     sgtitle("Inertial Velocity (m/s) vs Time (s)")
     
     subplot(3,1,1);
@@ -72,6 +75,7 @@ end
 %Angular Velocity
 if(fig(4) >=1)
     figure(fig(4));
+    set(gcf,'Name',nameSuffix+" Angular Vel",'NumberTitle','off');
     sgtitle("Angular Velocity (rad/s) vs Time (s)");
     
     subplot(3,1,1);
@@ -88,6 +92,8 @@ end
 %Control Variables
 if(fig(5) >=1)
     figure(fig(5));
+    set(gcf,'Name',nameSuffix+" Control Vars",'NumberTitle','off');
+
     sgtitle("Control Variables (N) vs Time (s)");
     
     subplot(4,1,1);
@@ -106,6 +112,7 @@ end
 %3-d Path
 if(fig(6) >=1)
     figure(fig(6));
+    set(gcf,'Name',nameSuffix+" 3D Pos",'NumberTitle','off');
     view(3);
     
     plot3(aircraft_state_array(:,1),aircraft_state_array(:,2),aircraft_state_array(:,3), col(6)); hold on;
