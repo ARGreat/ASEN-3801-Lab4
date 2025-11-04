@@ -35,7 +35,6 @@ FigureLabels1 = ["2.1a","2.1b","2.1c","2.1d","2.1e","2.1f"];
 FigureLabels5 = ["2.5a","2.5b","2.5c","2.5d","2.5e","2.5f"];
 
 %% 2.1 Initial Condition Deviations %%
-    if(run2_1and2||run2_1and5)
     for(i=1:6)
         var_0 = initialCons(:,i);
         motor_forces = m*g*[0.25;0.25;0.25;0.25];
@@ -53,47 +52,43 @@ FigureLabels5 = ["2.5a","2.5b","2.5c","2.5d","2.5e","2.5f"];
             if(i>3)
                 dispName = 'Non-Linearlized';
                 fig = [2501;2502;2503;2504;2505;2506] + i*10;
-                col = ["";"";"";"";"";""];
                 PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,FigureLabels5(i),dispName);
             end
         end
     end
-    end
 %% 2.2 Linear EOM Deviations %%
-    if(run2_1and2)
-        for(i=1:6)
-            var_0 = initialCons(:,i);
-            motor_forces = m*g*[0.25;0.25;0.25;0.25];
-        
-            %No Controls
-            deltaFc = [0;0;0];
-            deltaGc = [0;0;0];
-        
-            %Run Simulation
-            [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOM_Linearized(t, aircraft_state_array, g, m, I, deltaFc, deltaGc), [0,10],var_0);   
-        
-            %Plotting
-                n = length(time);
-                control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
-                fig = [2101;2102;2103;2104;2105;2106] + i*10;
-                col = ["";"";"";"";"";""];
-                dispName = ['Linearized'];
-                PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,FigureLabels1(i),dispName);
-         end
-    end
-%% 2.5 Non-Linear EOM with Control %%
-    if(run2_1and5)
-        for(i=4:6)
-            var_0 = initialCons(:,i); %State Vector for Quadrotor in Steady Hover;
-            [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOMwithRateFeedback(t, aircraft_state_array, g, m, I, nu, mu, d, km), [0,10],var_0);
-            
-            %Plotting
-            [Zc,Gc] = RotationDerivativeFeedback(aircraft_state_array',m,g);
-            control_input_array = [Zc(3,:);Gc];
-            fig = [2501;2502;2503;2504;2505;2506]+i*10;
+     for(i=1:6)
+        var_0 = initialCons(:,i);
+        motor_forces = m*g*[0.25;0.25;0.25;0.25];
+
+        %No Controls
+        deltaFc = [0;0;0];
+        deltaGc = [0;0;0];
+
+        %Run Simulation
+        [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOM_Linearized(t, aircraft_state_array, g, m, I, deltaFc, deltaGc), [0,10],var_0);   
+
+        %Plotting
+        if(run2_1and2==1)
+            n = length(time);
+            control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
+            fig = [2101;2102;2103;2104;2105;2106] + i*10;
             col = ["";"";"";"";"";""];
-            dispName = ['Non-Linearized with Control'];
-            PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,FigureLabels5(i),dispName);
+            dispName = ['Linearized'];
+            PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,FigureLabels1(i),dispName);
         end
+     end
+%% 2.5 Non-Linear EOM with Control %%
+    for(i=4:6)
+        var_0 = initialCons(:,i); %State Vector for Quadrotor in Steady Hover;
+        [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOMwithRateFeedback(t, aircraft_state_array, g, m, I, nu, mu, d, km), [0,10],var_0);
+        
+        %Plotting
+        [Zc,Gc] = RotationDerivativeFeedback(aircraft_state_array',m,g);
+        control_input_array = [Zc(3,:);Gc];
+        fig = [2501;2502;2503;2504;2505;2506]+i*10;
+        col = ["";"";"";"";"";""];
+        dispName = ['Non-Linearized with Control'];
+        PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,FigureLabels5(i),dispName);
     end
 end

@@ -5,7 +5,7 @@
 
 %Outputs: var_dot
 function var_dot = QuadrotorEOM_Linearized(t, var, g, m, I, deltaFc, deltaGc)
-
+    var_dot = zeros([12,1]);
     var_dot(1) = var(7);
     var_dot(2) = var(8);
     var_dot(3) = var(9);

@@ -5,7 +5,7 @@
 %Outputs:
 clear; clc; close all;
 
-%Toggles: When set to 1, the corresponding segment of code will run
+%Toggles: When set to 1, the se
 saveFigures = 0;
 
 run1_2 = 0;
@@ -16,8 +16,8 @@ run2_1and2 = 0;
 run2_1and5 = 0;
 
 %% Run lab Tasks %%
-LabTask1(run1_2,run1_3,run1_4);
-LabTask2(run2_1and2,run2_1and5);
+%LabTask1(run1_3,run1_4);
+%LabTask2(run2_1and2,run2_1and5);
 %LabTask3;
 
 
