@@ -206,7 +206,8 @@ mu = 2*10^(-6); %N*m/(rad/s)^2
     [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOMwithRateFeedback(t, aircraft_state_array, g, m, I, nu, mu, d, km), [0,10],var_0);
     
     %Plotting
-    control_input_array = RotationDerivativeFeedback(aircraft_state_array,m,g);
+    [Zc,Gc] = RotationDerivativeFeedback(aircraft_state_array,m,g);
+    control_input_array = [Zc(1);Gc];
     fig = [2541;2542;2543;2544;2545;2546];
     col = ["";"";"";"";"";""];
     PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,'2.5d');
@@ -219,7 +220,8 @@ mu = 2*10^(-6); %N*m/(rad/s)^2
     
     %Plotting
     n = length(time);
-    control_input_array = RotationDerivativeFeedback(aircraft_state_array,m,g);
+    [Zc,Gc] = RotationDerivativeFeedback(aircraft_state_array,m,g);
+    control_input_array = [Zc(1);Gc];
     fig = [2551;2552;2553;2554;2555;2556];
     col = ["";"";"";"";"";""];
     PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,'2.5e');
@@ -232,7 +234,8 @@ mu = 2*10^(-6); %N*m/(rad/s)^2
     
     %Plotting
     n = length(time);
-    control_input_array = RotationDerivativeFeedback(aircraft_state_array,m,g);
+    [Zc,Gc] = RotationDerivativeFeedback(aircraft_state_array,m,g);
+    control_input_array = [Zc(1);Gc];
     fig = [2561;2562;2563;2564;2565;2566];
     col = ["";"";"";"";"";""];
     PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,'2.5f');
