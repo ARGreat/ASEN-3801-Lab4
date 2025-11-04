@@ -18,8 +18,8 @@ function var_dot = QuadrotorEOM_Linearized(t, var, g, m, I, deltaFc, deltaGc)
     var_dot(8) = g * var(8);
     var_dot(9) = deltaFc(3) / m;
 
-    var_dot(10) = deltaGc(1) / I(1,1);
-    var_dot(11) = deltaGc(2) / I(2,2);
-    var_dot(12) = deltaGc(3) / I(3,3);
+    var_dot(10) = deltaGc(1) / I(1);
+    var_dot(11) = deltaGc(2) / I(2);
+    var_dot(12) = deltaGc(3) / I(3);
 
 end
