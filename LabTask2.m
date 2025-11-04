@@ -23,7 +23,7 @@ mu = 2*10^(-6); %N*m/(rad/s)^2
 %% 2.1 Initial Condition Deviations %%
     %a
     degDist = 5*pi/180;
-    rotDist = 0.1*pi/180;
+    rotDist = 0.1;
     var_0 = [0;0;-2;degDist;0;0;0;0;0;0;0;0]; %State Vector for Quadrotor in Steady Hover;
     motor_forces = m*g*[0.25;0.25;0.25;0.25];
     [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOM(t, aircraft_state_array, g, m, I, d, km, nu, mu, motor_forces), [0,10],var_0);
@@ -199,56 +199,14 @@ mu = 2*10^(-6); %N*m/(rad/s)^2
 
 
 %% 2.5 Non-Linear EOM with Control
-    degDist = 5*pi/180;
-    rotDist = 0.1*pi/180;
-    var_0 = [0;0;-2;degDist;0;0;0;0;0;0;0;0]; %State Vector for Quadrotor in Steady Hover;
-    motor_forces = m*g*[0.25;0.25;0.25;0.25];
-    [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOMwithRateFeedback(t, var_0, g, m, I, nu, mu, d, km), [0,10],var_0);
-    
-    %Plotting
-    n = length(time);
-    control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
-    fig = [2511;2512;2513;2514;2515;2516];
-    col = ["";"";"";"";"";""];
-    PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,'2.5a');
-    
-    %b
-    
-    var_0 = [0;0;-2;0;degDist;0;0;0;0;0;0;0]; %State Vector for Quadrotor in Steady Hover;
-    motor_forces = m*g*[0.25;0.25;0.25;0.25];
-    [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOMwithRateFeedback(t, var_0, g, m, I, nu, mu, d, km), [0,10],var_0);
-    
-    %Plotting
-    n = length(time);
-    control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
-    fig = [2521;2522;-2523;2524;2525;2526];
-    col = ["";"";"";"";"";""];
-    PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,'2.5b');
-    
-    
-    %c
-    
-    var_0 = [0;0;-2;0;0;degDist;0;0;0;0;0;0]; %State Vector for Quadrotor in Steady Hover;
-    motor_forces = m*g*[0.25;0.25;0.25;0.25];
-    [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOMwithRateFeedback(t, var_0, g, m, I, nu, mu, d, km), [0,10],var_0);
-    
-    %Plotting
-    n = length(time);
-    control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
-    fig = [2531;2532;2533;2534;2535;2536];
-    col = ["";"";"";"";"";""];
-    PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,'2.5c');
-    
+    rotDist = 0.1;
     
     %d
-    
     var_0 = [0;0;-2;0;0;0;0;0;0;rotDist;0;0]; %State Vector for Quadrotor in Steady Hover;
-    motor_forces = m*g*[0.25;0.25;0.25;0.25];
-    [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOMwithRateFeedback(t, var_0, g, m, I, nu, mu, d, km), [0,10],var_0);
+    [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOMwithRateFeedback(t, aircraft_state_array, g, m, I, nu, mu, d, km), [0,10],var_0);
     
     %Plotting
-    n = length(time);
-    control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
+    control_input_array = RotationDerivativeFeedback(aircraft_state_array,m,g);
     fig = [2541;2542;2543;2544;2545;2546];
     col = ["";"";"";"";"";""];
     PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,'2.5d');
@@ -257,12 +215,11 @@ mu = 2*10^(-6); %N*m/(rad/s)^2
     %e
     
     var_0 = [0;0;-2;0;0;0;0;0;0;0;rotDist;0]; %State Vector for Quadrotor in Steady Hover;
-    motor_forces = m*g*[0.25;0.25;0.25;0.25];
-    [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOMwithRateFeedback(t, var_0, g, m, I, nu, mu, d, km), [0,10],var_0);
+    [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOMwithRateFeedback(t, aircraft_state_array, g, m, I, nu, mu, d, km), [0,10],var_0);
     
     %Plotting
     n = length(time);
-    control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
+    control_input_array = RotationDerivativeFeedback(aircraft_state_array,m,g);
     fig = [2551;2552;2553;2554;2555;2556];
     col = ["";"";"";"";"";""];
     PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,'2.5e');
@@ -271,12 +228,11 @@ mu = 2*10^(-6); %N*m/(rad/s)^2
     %f
     
     var_0 = [0;0;-2;0;0;0;0;0;0;0;0;rotDist]; %State Vector for Quadrotor in Steady Hover;
-    motor_forces = m*g*[0.25;0.25;0.25;0.25];
-    [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOMwithRateFeedback(t, var_0, g, m, I, nu, mu, d, km), [0,10],var_0);
+    [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOMwithRateFeedback(t, aircraft_state_array, g, m, I, nu, mu, d, km), [0,10],var_0);
     
     %Plotting
     n = length(time);
-    control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
+    control_input_array = RotationDerivativeFeedback(aircraft_state_array,m,g);
     fig = [2561;2562;2563;2564;2565;2566];
     col = ["";"";"";"";"";""];
     PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,'2.5f');
