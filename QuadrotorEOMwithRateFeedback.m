@@ -18,18 +18,10 @@ function var_dot = QuadrotorEOMwithRateFeedback(t, var, g, m, I, nu, mu, d, km)
     
     %Caculate Control Forces
     [Fc, Gc] = RotationDerivativeFeedback(var, m, g);
-    motor_forces = ComputeMotorForces(Fc, Gc, d, km);
-
-    f1 = motor_forces(1);
-    f2 = motor_forces(2);
-    f3 = motor_forces(3);
-    f4 = motor_forces(4);
-
-    %Calculate Control Forces
-    Z_c = -f1 - f2 - f3 - f4;
-    L_c = (d/sqrt(2)) * (-f1 - f2 + f3 + f4);
-    M_c = (d/sqrt(2)) * (f1 - f2 - f3 + f4);
-    N_c = km * (f1 - f2 + f3 - f4);
+    Z_c = Fc(3);        
+    L_c = Gc(1);
+    M_c = Gc(2);
+    N_c = Gc(3);
     
     %Calulate Drag Forces and moment
     V_a = sqrt(u_E^2+v_E^2+w_E^2);
@@ -68,7 +60,7 @@ function var_dot = QuadrotorEOMwithRateFeedback(t, var, g, m, I, nu, mu, d, km)
     v_E_dot = (p*w_E-r*u_E) + g*(cos(theta)*sin(phi)) + Y/m;
     w_E_dot = (q*u_E-p*v_E) + g*(cos(theta)*cos(phi)) + (Z+Z_c)/m;
     
-    p_dot = (I_y-I_z)/I_x*q*r + (L+L_c)/I_z;
+    p_dot = (I_y-I_z)/I_x*q*r + (L+L_c)/I_x;
     q_dot = (I_z-I_x)/I_y*p*r + (M+M_c)/I_y;
     r_dot = (I_x-I_y)/I_z*p*q + (N+N_c)/I_z;
     
