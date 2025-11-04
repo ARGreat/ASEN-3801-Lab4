@@ -62,7 +62,7 @@ function var_dot = QuadrotorEOMwithRateFeedback(t, var, g, m, I, nu, mu, d, km)
 
     phi_dot = p + q*sin(phi)*tan(theta)+r*cos(phi)*tan(theta);
     theta_dot = q*cos(phi) - r*sin(phi);
-    psi_dot = r*sin(phi)*sec(theta) + r*cos(phi)*sec(theta);
+    psi_dot = q*sin(phi)*sec(theta) + r*cos(phi)*sec(theta);
     
     u_E_dot = (r*v_E-q*w_E) + g*(-sin(theta)) + X/m;
     v_E_dot = (p*w_E-r*u_E) + g*(cos(theta)*sin(phi)) + Y/m;

@@ -6,8 +6,8 @@ function motor_forces = ComputeMotorForces(Fc, Gc, d, km)
 
     SolutionMatrix = [
                         -1,-1,-1,-1;
-                        -d/sqrt(2),-d/sqrt(2),d/sqrt(2),d\sqrt(2);
-                        d/sqrt(2),-d/sqrt(2),-d/sqrt(2),d\sqrt(2);
+                        -d/sqrt(2),-d/sqrt(2),d/sqrt(2),d/sqrt(2);
+                        d/sqrt(2),-d/sqrt(2),-d/sqrt(2),d/sqrt(2);
                         km,-km,km,-km;
                         ];
     motor_forces = (SolutionMatrix)\[Fc(3);Gc];
