@@ -49,7 +49,7 @@ FigureLabels5 = ["2.5a","2.5b","2.5c","2.5d","2.5e","2.5f"];
             col = ["";"";"";"";"";""];
             PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,FigureLabels1(i),dispName);
         end
-        if(run2_1and5 == 1)
+        if(run2_1and5)
             if(i>3)
                 dispName = 'Non-Linearlized';
                 fig = [2501;2502;2503;2504;2505;2506] + i*10;

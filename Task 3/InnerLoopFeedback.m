@@ -23,14 +23,16 @@ function [Fc, Gc] = InnerLoopFeedback(var)
     k_r = 0.004; % N·m/(rad/s)
 
     % from state vector var
-    phi = var(4);    % rad
-    theta = var(5);    % rad
-    p = var(10);   % [rad/s]
-    q = var(11);   % [rad/s]
-    r = var(12);   % [rad/s]
+    phi = var(4,:);    % rad
+    theta = var(5,:);    % rad
+    p = var(10,:);   % [rad/s]
+    q = var(11,:);   % [rad/s]
+    r = var(12,:);   % [rad/s]
 
     % control force (only in z)
     Fc = [0; 0; m*g];
+    [~,n] = size(var);
+    Fc = repmat(Fc,1,n);
 
     % control moments (body)
     Lc = -k2_roll  * phi    - k1_roll  * p;   % roll moment

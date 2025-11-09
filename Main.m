@@ -5,6 +5,19 @@
 %Outputs:
 clear; clc; close all;
 
+%%------------------------%%
+%%--------Paths-----------%%
+%%------------------------%%
+
+%Add File Paths (cannot access functions in other files)
+addpath('./Task 1');
+addpath('./Task 2');
+addpath('./Task 3');
+
+%%------------------------%%
+%%--------Toggles---------%%
+%%------------------------%%
+
 %Toggles: When set to 1, the corresponding segment of code will run
 saveFigures = 0;
 
@@ -15,13 +28,22 @@ run1_4 = 0;
 run2_1and2 = 0;
 run2_1and5 = 0;
 
-%% Run lab Tasks %%
+run3_3 = 0;
+run_rootLocus = 1;
+
+%%------------------------%%
+%%-----Run lab Tasks------%%
+%%------------------------%%
+
 LabTask1(run1_2,run1_3,run1_4);
 LabTask2(run2_1and2,run2_1and5);
-%LabTask3;
+LabTask3(run3_3);
+RootLocus(run_rootLocus);
 
 
-%Save Figures
+%%------------------------%%
+%%-----Save Figures-------%%
+%%------------------------%%
 if(saveFigures == 1)
     figHandles = findall(0, 'Type', 'figure');
     n = length(figHandles);
