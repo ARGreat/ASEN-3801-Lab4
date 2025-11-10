@@ -33,7 +33,7 @@ function [Fc, Gc] = VelocityReferenceFeedback(t, var,m,g)
     Mc = -K_lat(1)*q -K_lat(2)*theta + K_lat(3)*(u_Er-u_E);
     
     Fc = [0;0;m*g];
-    Fc = repmat(Fc,1,length(t));
+    Fc = repmat(Fc,length(t),1);
     Gc = [Lc;Mc;-0.004*r];
 
 end

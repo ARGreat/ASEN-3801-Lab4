@@ -130,7 +130,12 @@ end
 if(fig(6) >=1)
     figure(fig(6)); hold on;
     set(gcf,'Name',nameSuffix+" 3D Pos",'NumberTitle','off');
-    view(3);
+    view(3); axis equal;
+    current_axes = gca; 
+
+
+
+    
     plot3(aircraft_state_array(:,1),aircraft_state_array(:,2),-aircraft_state_array(:,3), col(6),DisplayName=dispName); hold on;
     plot3(aircraft_state_array(1,1),aircraft_state_array(1,2),-aircraft_state_array(1,3),'go', 'MarkerFaceColor', 'g'); hold on;
     plot3(aircraft_state_array(end,1),aircraft_state_array(end,2),-aircraft_state_array(end,3),'ro', 'MarkerFaceColor', 'r'); hold on;
@@ -140,10 +145,11 @@ if(fig(6) >=1)
     title("3D Path");
     legend(Location='northeast')
     grid on;
-    ax = gca; % Get current axes handle
-    ax.DataAspectRatioMode = 'manual';
-    ax.DataAspectRatio = [1 1 1];
-    %xlim(lims),ylim(lims),zlim(lims);
+    % Get x-axis limits
+    x_lims = get(current_axes, 'XLim');
+    y_lims= get(current_axes, 'YLim');
+    z_lims = get(current_axes, 'ZLim');
+    maxLim = max([x_lims,y_lims,z_lims]);
     
     hold off;
 end
