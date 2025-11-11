@@ -21,16 +21,16 @@ addpath('./Task 3');
 %Toggles: When set to 1, the corresponding segment of code will run
 saveFigures = 0;
 
-run1_2 = 1;
-run1_3 = 1;
-run1_4 = 1;
+run1_2 = 0;
+run1_3 = 0;
+run1_4 = 0;
 
-run2_1and2 = 1;
-run2_1and5 = 1;
+run2_1and2 = 0;
+run2_1and5 = 0;
 
-run3_3 = 1;
+run3_3 = 0;
 run3_7 = 1;
-run_rootLocus =1;
+run_rootLocus =0;
 
 %%------------------------%%
 %%-----Run lab Tasks------%%

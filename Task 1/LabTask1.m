@@ -4,8 +4,6 @@
 %Purpose: Give a concise location to place all Lab1 Content
 %Inputs: RSdata_nocontrol.mat
 %Outputs:
-
-
 function LabTask1(run1_2,run1_3,run1_4)
 
 %% Basic Variables
@@ -79,4 +77,13 @@ if(run1_4 == 1)
         col = ["";"";"";"";"";""];
         PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,"1.4 (Yaw)","Quadrotor EOM 5m/s East")
 end
+
+%% 1.5 Plot PARROT Data
+load('RSdata_nocontrol.mat');
+xdata = rt_estim.signals.values(:,1);
+ydata = rt_estim.signals.values(:,1);
+zdata = rt_estim.signals.values(:,1);
+
+
+
 end

@@ -46,14 +46,14 @@ FigureLabels5 = ["2.5a","2.5b","2.5c","2.5d","2.5e","2.5f"];
         if(run2_1and2==1)
             dispName = 'Non-Linearlized';
             fig = [2101;2102;2103;2104;2105;2106] + i*10;
-            col = ["";"";"";"";"";""];
+            col = ["b";"b";"b";"b";"b";"b"];
             PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,FigureLabels1(i),dispName);
         end
         if(run2_1and5)
             if(i>3)
                 dispName = 'Non-Linearlized';
                 fig = [2501;2502;2503;2504;2505;2506] + i*10;
-                col = ["";"";"";"";"";""];
+                col = ["b";"b";"b";"b";"b";"b"];
                 PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,FigureLabels5(i),dispName);
             end
         end
@@ -76,7 +76,7 @@ FigureLabels5 = ["2.5a","2.5b","2.5c","2.5d","2.5e","2.5f"];
                 n = length(time);
                 control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
                 fig = [2101;2102;2103;2104;2105;2106] + i*10;
-                col = ["";"";"";"";"";""];
+                col = ["r--";"r--";"r--";"r--";"r--";"r--"];
                 dispName = ['Linearized'];
                 PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,FigureLabels1(i),dispName);
          end
@@ -91,7 +91,7 @@ FigureLabels5 = ["2.5a","2.5b","2.5c","2.5d","2.5e","2.5f"];
             [Zc,Gc] = RotationDerivativeFeedback(aircraft_state_array',m,g);
             control_input_array = [Zc(3,:);Gc];
             fig = [2501;2502;2503;2504;2505;2506]+i*10;
-            col = ["";"";"";"";"";""];
+            col = ["r--";"r--";"r--";"r--";"r--";"r--"];
             dispName = ['Non-Linearized with Control'];
             PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,FigureLabels5(i),dispName);
         end

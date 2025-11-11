@@ -28,7 +28,7 @@ function PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, co
 if(fig(1) >=1)
     figure(fig(1));hold on;
     set(gcf,'Name',nameSuffix+" Inertial P",'NumberTitle','off');
-    sgtitle("Inertial Positon (m) vs Time (s)");
+    sgtitle(nameSuffix+": Inertial Positon (m) vs Time (s)");
     hold off;
     
     subplot(3,1,1);hold on;
@@ -47,7 +47,7 @@ end
 if(fig(2) >=1)
     figure(fig(2)); hold on;
     set(gcf,'Name',nameSuffix+" Euler Angles",'NumberTitle','off');
-    sgtitle("Euler Angles (rad) vs Time (s)")
+    sgtitle(nameSuffix+": Euler Angles (rad) vs Time (s)")
     
     subplot(3,1,1); hold on;
     plot(time, aircraft_state_array(:,4), col(2),DisplayName=dispName); ylabel('φ (rad)')
@@ -65,7 +65,7 @@ end
 if(fig(3) >=1)
     figure(fig(3));hold on;
     set(gcf,'Name',nameSuffix+" Inertial V",'NumberTitle','off');
-    sgtitle("Inertial Velocity (m/s) vs Time (s)"); 
+    sgtitle(nameSuffix+": Inertial Velocity (m/s) vs Time (s)"); 
     hold off;
     
     subplot(3,1,1);hold on;
@@ -85,7 +85,7 @@ end
 if(fig(4) >=1)
     figure(fig(4)); hold on;
     set(gcf,'Name',nameSuffix+" Angular Vel",'NumberTitle','off');
-    sgtitle("Angular Velocity (rad/s) vs Time (s)");
+    sgtitle(nameSuffix+": Angular Velocity (rad/s) vs Time (s)");
     hold off;
     
     subplot(3,1,1);hold on;
@@ -106,7 +106,7 @@ end
 if(fig(5) >=1)
     figure(fig(5)); hold on;
     set(gcf,'Name',nameSuffix+" Control Vars",'NumberTitle','off');
-    sgtitle("Control Variables (N) vs Time (s)");
+    sgtitle(nameSuffix+": Control Variables (N) vs Time (s)");
     hold off;
     
     subplot(4,1,1);hold on;
@@ -129,6 +129,7 @@ end
 %3-d Path
 if(fig(6) >=1)
     figure(fig(6)); hold on;
+    aircraft_state_array(abs(aircraft_state_array)<1e-6)=0;
     set(gcf,'Name',nameSuffix+" 3D Pos",'NumberTitle','off');
     view(3);
     plot3(aircraft_state_array(:,1),aircraft_state_array(:,2),-aircraft_state_array(:,3), col(6),DisplayName=dispName); hold on;
@@ -137,12 +138,12 @@ if(fig(6) >=1)
     xlabel("North (m)");
     ylabel("East (m)");
     zlabel("Up (m)");
-    title("3D Path");
+    title(nameSuffix+": 3D Path");
     legend(Location='northeast')
     grid on;
-    ax = gca; % Get current axes handle
-    ax.DataAspectRatioMode = 'manual';
-    ax.DataAspectRatio = [1 1 1];
+    %ax = gca; % Get current axes handle
+    %ax.DataAspectRatioMode = 'manual';
+    %ax.DataAspectRatio = [1 1 1];
     %xlim(lims),ylim(lims),zlim(lims);
     
     hold off;
