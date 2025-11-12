@@ -42,7 +42,8 @@ FigureLabels5 = ["2.5a","2.5b","2.5c","2.5d","2.5e","2.5f"];
         [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOM(t, aircraft_state_array, g, m, I, d, km, nu, mu, motor_forces), [0,10],var_0);    
         %Plotting
         n = length(time);
-        control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
+        motor_forces = repmat(motor_forces,1,n);
+        control_input_array = motor_forces; %Needs to be Stretched to length n for plotting
         if(run2_1and2==1)
             dispName = 'Non-Linearlized';
             fig = [2101;2102;2103;2104;2105;2106] + i*10;
@@ -55,6 +56,10 @@ FigureLabels5 = ["2.5a","2.5b","2.5c","2.5d","2.5e","2.5f"];
                 fig = [2501;2502;2503;2504;2505;2506] + i*10;
                 col = ["b";"b";"b";"b";"b";"b"];
                 PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,FigureLabels5(i),dispName);
+                  
+                %Motor Plot
+                fig = 2507 + i*10;
+                PlotMotorForces(time,motor_forces,fig,"b",FigureLabels5(i),'Non-Linearlized No Control');
             end
         end
     end
@@ -94,6 +99,15 @@ FigureLabels5 = ["2.5a","2.5b","2.5c","2.5d","2.5e","2.5f"];
             col = ["r--";"r--";"r--";"r--";"r--";"r--"];
             dispName = ['Non-Linearized with Control'];
             PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,FigureLabels5(i),dispName);
+
+            %Plot Motor Forces
+            n = length(time);
+            motor_forces = zeros([4,n]);
+            for(j=1:n)
+                motor_forces(:,j) = ComputeMotorForces(Zc(:,j),Gc(:,j),d,km);
+            end
+            fig = 2507 + i*10;
+            PlotMotorForces(time,motor_forces,fig,"r--",FigureLabels5(i),'Non-Linearized with Control');
         end
     end
 end

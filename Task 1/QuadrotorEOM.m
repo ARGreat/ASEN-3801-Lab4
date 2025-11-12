@@ -73,7 +73,6 @@ function var_dot = QuadrotorEOM(t, var, g, m, I, d, km, nu, mu, motor_forces)
     
     u_E_dot = (r*v_E-q*w_E) + g*(-sin(theta)) + X/m;
     v_E_dot = (p*w_E-r*u_E) + g*(cos(theta)*sin(phi)) + Y/m;
-    int1 = (cos(theta)*cos(phi));
     w_E_dot = (q*u_E-p*v_E) + g*(cos(theta)*cos(phi)) + (Z+Z_c)/m;
     
     p_dot = (I_y-I_z)/I_x*q*r + (L+L_c)/I_x;
