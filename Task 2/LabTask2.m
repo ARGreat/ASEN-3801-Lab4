@@ -42,8 +42,8 @@ FigureLabels5 = ["2.5a","2.5b","2.5c","2.5d","2.5e","2.5f"];
         [time,aircraft_state_array] = ode45(@(t,aircraft_state_array) QuadrotorEOM(t, aircraft_state_array, g, m, I, d, km, nu, mu, motor_forces), [0,10],var_0);    
         %Plotting
         n = length(time);
-        motor_forces = repmat(motor_forces,1,n);
-        control_input_array = motor_forces; %Needs to be Stretched to length n for plotting
+        motor_forces = repmat([motor_forces],1,n);
+        control_input_array = repmat([m*g;0;0;0],1,n); %Needs to be Stretched to length n for plotting
         if(run2_1and2==1)
             dispName = 'Non-Linearlized';
             fig = [2101;2102;2103;2104;2105;2106] + i*10;

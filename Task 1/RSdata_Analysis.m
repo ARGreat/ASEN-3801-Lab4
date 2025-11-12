@@ -15,7 +15,7 @@ function RSdata_analysis()
     q_data = data.rt_estim.signals.values(:,11);
     r_data = data.rt_estim.signals.values(:,12);
     
-    aircraft_state_array = [x_data, y_data, z_data, ...
+    aircraft_state_array = [x_data, y_data, -z_data, ...
                             phi_data, theta_data, psi_data, ...
                             u_data, v_data, w_data, ...
                             p_data, q_data, r_data];
@@ -63,6 +63,6 @@ function RSdata_analysis()
     col = ["";"";"";"";"";""];
     fig = [1501;1502;1503;1504;1505;1506];
     
-    PlotAircraftSim(t, aircraft_state_array, control_input_array,fig, col,"1_5","RSdata Analysis");
+    PlotAircraftSim(t, aircraft_state_array, control_input_array,fig, col,"1.5","RSdata Analysis");
 
 end

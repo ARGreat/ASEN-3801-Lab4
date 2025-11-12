@@ -28,7 +28,7 @@ if(run1_2 ==1)
     
     %Set up for Plotting
     n = length(time);
-    control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
+    control_input_array = repmat([m*g;0;0;0],1,n); %Needs to be Stretched to length n for plotting
     fig = [11;12;13;14;15;16];
     col = ["";"";"";"";"";""];
     PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,"1.2","Quadrotor EOM no Aero Forces");
@@ -42,7 +42,7 @@ if(run1_3 == 1)
     
     %Set up For Plotting
     n = length(time);
-    control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
+    control_input_array = repmat([m*g;0;0;0],1,n); %Needs to be Stretched to length n for plotting
     fig = [21;22;23;24;25;26];
     col = ["";"";"";"";"";""];
     PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,"1.3","Quadrotor EOM with Aero Forces")
@@ -60,7 +60,7 @@ if(run1_4 == 1)
     
         % up For Plotting
         n = length(time);
-        control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
+        control_input_array = repmat([fc*4;0;0;0],1,n); %Needs to be Stretched to length n for plotting
         fig = [31;32;33;34;35;36];
         col = ["";"";"";"";"";""];
         PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,"1.4 (No Yaw)","Quadrotor EOM 5m/s East")
@@ -72,7 +72,7 @@ if(run1_4 == 1)
     
         % up For Plotting
         n = length(time);
-        control_input_array = repmat(motor_forces,1,n); %Needs to be Stretched to length n for plotting
+        control_input_array = repmat([fc*4;0;0;0],1,n); %Needs to be Stretched to length n for plotting
         fig = [41;42;43;44;45;46];
         col = ["";"";"";"";"";""];
         PlotAircraftSim(time, aircraft_state_array, control_input_array,fig, col,"1.4 (Yaw)","Quadrotor EOM 5m/s East")
