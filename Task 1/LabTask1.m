@@ -79,10 +79,7 @@ if(run1_4 == 1)
 end
 
 %% 1.5 Plot PARROT Data
-load('RSdata_nocontrol.mat');
-xdata = rt_estim.signals.values(:,1);
-ydata = rt_estim.signals.values(:,1);
-zdata = rt_estim.signals.values(:,1);
+RSdata_Analysis();
 
 
 
